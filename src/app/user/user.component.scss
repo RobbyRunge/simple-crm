@@ -7,17 +7,53 @@
 
 .user-table {
   background-color: white;
+  border-collapse: collapse;
   border-radius: 8px;
-  padding: 8px;
 
-   th {
+  tr {
+    border-bottom: 1px solid grey;
+    cursor: pointer;
+
+    &:first-child {
+      cursor: unset;
+
+      &:hover {
+        background-color: unset;
+      }
+    }
+
+    &:last-child {
+      border-bottom: 0;
+
+      &:hover {
+        td:first-child {
+          border-bottom-left-radius: 8px;
+        }
+        
+        td:last-child {
+          border-bottom-right-radius: 8px;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    td {
+      padding: 8px;
+      padding-left: 16px;
+      color: rgba(0, 0, 0, 1);
+      height: 48px;
+    }
+  }
+
+  th {
+    padding: 8px;
+    padding-left: 16px;
     color: rgba(0, 0, 0, 0.5);
     font-size: 14px;
     font-weight: 500;
     text-align: start;
-  }
-
-  td {
-    color: rgba(0, 0, 0, 1);
   }
 }
