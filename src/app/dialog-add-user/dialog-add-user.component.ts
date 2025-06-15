@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,6 +31,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 export class DialogAddUserComponent {
   private firestore: Firestore = inject(Firestore);
+  private dialogRef = inject(MatDialogRef<DialogAddUserComponent>);
   user = new User();
   birthDate: Date | null = null;
   loading = false;
@@ -45,6 +46,7 @@ export class DialogAddUserComponent {
       const result = await addDoc(userCollection, this.user.toJSON());
       this.loading = false;
       console.log('Adding user finished', result);
+      this.dialogRef.close();
     } catch (error) {
       console.error('Error adding user:', error);
     }
