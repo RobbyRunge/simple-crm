@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -8,10 +9,13 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule],
+  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatSidenavModule, MatButtonModule, MatIconModule, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'simple-crm';
+
+  constructor() {
+  }
 }
