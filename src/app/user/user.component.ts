@@ -5,6 +5,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
+import { User } from '../../models/user.class';
 
 @Component({
   selector: 'app-user',
@@ -14,6 +15,7 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
 })
 export class UserComponent {
   dialog = inject(MatDialog);
+  user = new User();
 
   openDialog() {
     this.dialog.open(DialogAddUserComponent)
