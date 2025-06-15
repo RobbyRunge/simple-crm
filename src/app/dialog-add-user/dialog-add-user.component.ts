@@ -32,11 +32,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 export class DialogAddUserComponent {
   private firestore: Firestore = inject(Firestore);
   user = new User();
-  birthDate: Date = new Date();
+  birthDate: Date | null = null;
   loading = false;
 
   async saveUser() {
-    this.user.birthDate = this.birthDate.getTime();
+    if (this.birthDate) {
+      this.user.birthDate = this.birthDate.getTime();
+    }
     this.loading = true;
     try {
       const userCollection = collection(this.firestore, 'user');
