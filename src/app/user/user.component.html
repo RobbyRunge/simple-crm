@@ -5,7 +5,7 @@
       <th>E-mail</th>
       <th>City</th>
     </tr>
-    <tr *ngFor="let user of allUsers" [routerlink]="['/user/' + user.id]">
+    <tr *ngFor="let user of allUsers" (click)="navigateToUser(user.id)" class="clickable-row">
       <td>{{ user.firstName }} {{ user.lastName }}</td>
       <td>{{ user.email }}</td>
       <td>{{ user.city }}</td>

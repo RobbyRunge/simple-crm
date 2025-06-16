@@ -9,6 +9,7 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
 import { User } from '../../models/user.class';
 import { UserService } from '../services/user.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -30,12 +31,13 @@ export class UserComponent implements OnInit, OnDestroy {
   allUsers: any[] = [];
   private userService = inject(UserService);
   private subscription: Subscription | undefined;
+  private router = inject(Router);
 
   ngOnInit(): void {
     this.subscription = this.userService.getUsers().subscribe((changes: any[]) => {
       this.allUsers = changes;
       console.log(this.allUsers);
-      
+
     });
   }
 
@@ -48,5 +50,9 @@ export class UserComponent implements OnInit, OnDestroy {
   openDialog() {
     const dialogRef = this.dialog.open(DialogAddUserComponent);
     dialogRef.afterClosed().subscribe();
+  }
+
+  navigateToUser(userId: string): void {
+    this.router.navigate(['/user', userId]);
   }
 }
