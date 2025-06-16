@@ -51,4 +51,8 @@ export class DialogAddUserComponent {
       console.error('Error adding user:', error);
     }
   }
+
+  closeOverlay() {
+    this.dialogRef.close();
+  }
 }
