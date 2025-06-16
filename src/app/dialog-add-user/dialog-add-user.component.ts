@@ -8,7 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user.class';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { UserService } from '../services/user.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
@@ -30,7 +30,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 })
 
 export class DialogAddUserComponent {
-  private firestore: Firestore = inject(Firestore);
+  private userService = inject(UserService);
   private dialogRef = inject(MatDialogRef<DialogAddUserComponent>);
   user = new User();
   birthDate: Date | null = null;
@@ -42,13 +42,12 @@ export class DialogAddUserComponent {
     }
     this.loading = true;
     try {
-      const userCollection = collection(this.firestore, 'user');
-      const result = await addDoc(userCollection, this.user.toJSON());
+      await this.userService.addUser(this.user);
       this.loading = false;
-      console.log('Adding user finished', result);
       this.dialogRef.close();
     } catch (error) {
       console.error('Error adding user:', error);
+      this.loading = false;
     }
   }
 
