@@ -16,9 +16,11 @@ export class UserService {
       return collectionData(userCollection, { idField: 'id' });
     });
   }
-
+  
   addUser(user: User): Promise<any> {
-    const userCollection = collection(this.firestore, 'user');
-    return addDoc(userCollection, user.toJSON());
+    return runInInjectionContext(this.injector, () => {
+      const userCollection = collection(this.firestore, 'user');
+      return addDoc(userCollection, user.toJSON());
+    });
   }
 }
