@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
@@ -7,6 +8,13 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
-export class UserDetailComponent {
+export class UserDetailComponent implements OnInit {
+  userId = '';
 
+  private route = inject(ActivatedRoute);
+
+  ngOnInit() {
+    this.userId = this.route.snapshot.paramMap.get('id') || '';
+    console.log('GOT id', this.userId);
+  }
 }
