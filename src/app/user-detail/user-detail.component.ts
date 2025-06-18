@@ -4,10 +4,16 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../../models/user.class';
 import { UserService } from '../services/user.service';
 import { Subscription } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
+
+import {MatDividerModule} from '@angular/material/divider';
+
 
 @Component({
   selector: 'app-user-detail',
-  imports: [MatCardModule],
+  imports: [MatCardModule, MatIconModule, MatButtonModule, MatDividerModule],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
@@ -35,5 +41,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       this.user = new User(user);
       console.log('User data:', this.user);
     });
+  }
+
+  openAddressDialog() {
+    
   }
 }

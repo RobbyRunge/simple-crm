@@ -33,4 +33,27 @@
 .address {
   background-color: rgba(255, 255, 255, 1);
   color: rgba(0, 0, 0, 1);
+  position: relative;
+}
+
+.pin-right-upper-corner {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  
+  mat-icon {
+    color: rgba(0, 0, 0, 1);
+  }
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  &.mat-mdc-icon-button {
+    color: black;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
 }
