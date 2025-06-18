@@ -1,8 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Firestore, doc, docData } from '@angular/fire/firestore';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../../models/user.class';
+import { UserService } from '../services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-detail',
@@ -10,12 +11,12 @@ import { User } from '../../models/user.class';
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit, OnDestroy {
   userId = '';
   user: User = new User();
-
+  private subscription: Subscription | undefined;
   private route = inject(ActivatedRoute);
-  private firestore = inject(Firestore);
+  private userService = inject(UserService);
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id') || '';
@@ -23,9 +24,14 @@ export class UserDetailComponent implements OnInit {
     this.getUser();
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
   getUser() {
-    const userDocRef = doc(this.firestore, 'user', this.userId);
-    docData(userDocRef).subscribe((user: any) => {
+    this.subscription = this.userService.getUser(this.userId).subscribe((user: any) => {
       this.user = new User(user);
       console.log('User data:', this.user);
     });
