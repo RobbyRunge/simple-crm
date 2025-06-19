@@ -7,9 +7,11 @@ import { Subscription } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-
-
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
+import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 
 @Component({
@@ -21,6 +23,7 @@ import { MatDividerModule } from '@angular/material/divider';
 export class UserDetailComponent implements OnInit, OnDestroy {
   userId = '';
   user: User = new User();
+  public dialog = inject(MatDialog);
   private subscription: Subscription | undefined;
   private route = inject(ActivatedRoute);
   private userService = inject(UserService);
@@ -44,7 +47,11 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  openAddressDialog() {
+  editMenu() {
+    this.dialog.open(DialogEditAddressComponent);
+  }
 
+  editUserDetail() {
+    this.dialog.open(DialogEditUserComponent);
   }
 }
