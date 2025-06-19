@@ -7,6 +7,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user.class';
 import { UserService } from '../services/user.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dialog-edit-address',
@@ -17,7 +18,8 @@ import { UserService } from '../services/user.service';
     MatInputModule,
     MatButtonModule,
     MatProgressBarModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './dialog-edit-address.component.html',
   styleUrl: './dialog-edit-address.component.scss'
