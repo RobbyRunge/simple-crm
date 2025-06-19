@@ -6,14 +6,15 @@ import { UserService } from '../services/user.service';
 import { Subscription } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @Component({
   selector: 'app-user-detail',
-  imports: [MatCardModule, MatIconModule, MatButtonModule, MatDividerModule],
+  imports: [MatCardModule, MatIconModule, MatButtonModule, MatDividerModule, MatMenuModule],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
@@ -44,6 +45,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   }
 
   openAddressDialog() {
-    
+
   }
 }
