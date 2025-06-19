@@ -27,7 +27,7 @@ import { CommonModule } from '@angular/common';
 export class DialogEditAddressComponent {
   loading = false;
   user: User = new User();
-  userId: string = '';
+  userId!: string;
   
   private dialogRef = inject(MatDialogRef<DialogEditAddressComponent>);
   private userService = inject(UserService);

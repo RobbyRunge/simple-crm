@@ -28,7 +28,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 export class DialogEditUserComponent implements OnInit {
   loading = false;
   user: User = new User();
-  userId: string = '';
+  userId!: string;
   birthDate: Date | null = null;
 
   private dialogRef = inject(MatDialogRef<DialogEditUserComponent>);
